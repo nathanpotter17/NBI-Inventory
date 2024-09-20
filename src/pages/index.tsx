@@ -6,30 +6,10 @@ const geistSans = Inter_Tight({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
-interface Landmark {
-  id: string;
-  name: string;
-  latitude: number;
-  longitude: number;
-}
-
 const sendData = async () => {
-  const data: Landmark = {
-    id: "123",
-    name: "Burj Khalifa",
-    latitude: 25.1972,
-    longitude: 55.2744,
-  };
-
-  const response = await fetch(`http://localhost:3000/api/seedData`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
+  const response = await fetch(`http://localhost:3000/api/seedData`);
   const resp = await response.json();
-  console.log(resp);
+  console.log(resp.message);
 };
 
 export default function Home() {

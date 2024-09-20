@@ -1,12 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { PrismaClient } from "@prisma/client";
 
-interface Landmark {
-  id: string;
-  name: string;
-  latitude: number;
-  longitude: number;
-}
+import csv from "csv-parser";
+import fs from "fs";
 
 const prisma = new PrismaClient();
 
@@ -15,19 +11,24 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    const { id, name, latitude, longitude }: Landmark = req.body;
+    const results: any = [];
 
-    const landmark = await prisma.landmark.create({
-      data: {
-        id: id,
-        name: name,
-        latitude: latitude,
-        longitude: longitude,
-      },
-    });
-
-    res.status(200).json(landmark);
+    fs.createReadStream("public/mapped.csv")
+      .pipe(csv({ separator: "," }))
+      .on("data", (data) => results.push(data))
+      .on("end", async () => {
+        try {
+          await prisma.bridge.createMany({
+            data: results,
+          });
+          res.status(200).json({ message: "Data received. Check the Studio" });
+        } catch (prismaError) {
+          console.error("Error inserting data into Prisma:", prismaError);
+          res.status(500).json({ error: "Error inserting data into Prisma" });
+        }
+      });
   } catch (error) {
-    res.status(500).json({ error: "Error creating landmark" });
+    console.error("Error handling request:", error);
+    res.status(500).json({ error: "Error processing CSV" });
   }
 }

@@ -1,8 +1,8 @@
 // This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// learn more about it in the docs https//pris.ly/d/prisma-schema
 
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// Try Prisma Accelerate https//pris.ly/cli/accelerate-init
 
 generator client {
   provider = "prisma-client-js"
@@ -15,125 +15,128 @@ datasource db {
 }
 
 model Bridge {
-  id                       Int      @id @default(autoincrement()) // Unique identifier for each row
-  STATE_CODE_001           String // State code, always 42 for Pennsylvania
-  STRUCTURE_NUMBER_008     String // Structure number
-  RECORD_TYPE_005A         Int // Record type
-  ROUTE_PREFIX_005B        Int // Route prefix
-  SERVICE_LEVEL_005C       Int // Service level
-  ROUTE_NUMBER_005D        String // Route number
-  DIRECTION_005E           Int // Direction
-  HIGHWAY_DISTRICT_002     String // Highway district
-  COUNTY_CODE_003          String // County code
-  PLACE_CODE_004           String // Place code
-  FEATURES_DESC_006A       String? // Features description (nullable)
-  CRITICAL_FACILITY_006B   String? // Critical facility (nullable)
-  FACILITY_CARRIED_007     String // Facility carried
-  LOCATION_009             String // Location description
-  MIN_VERT_CLR_010         Float // Minimum vertical clearance
-  KILOPOINT_011            Int // Kilopoint
-  BASE_HWY_NETWORK_012     Int // Base highway network
-  LRS_INV_ROUTE_013A       String? // LRS inventory route (nullable)
-  SUBROUTE_NO_013B         String? // Subroute number (nullable)
-  LAT_016                  Float // Latitude
-  LONG_017                 Float // Longitude
-  DETOUR_KILOS_019         Float // Detour kilometers
-  TOLL_020                 Int // Toll
-  MAINTENANCE_021          Int // Maintenance
-  OWNER_022                Int // Owner
-  FUNCTIONAL_CLASS_026     Int // Functional class
-  YEAR_BUILT_027           Int // Year built
-  TRAFFIC_LANES_ON_028A    Int // Traffic lanes on
-  TRAFFIC_LANES_UND_028B   Int // Traffic lanes under
-  ADT_029                  Int // Average daily traffic
-  YEAR_ADT_030             Int // Year ADT
-  DESIGN_LOAD_031          Int // Design load
-  APPR_WIDTH_MT_032        Float // Approach width (meters)
-  MEDIAN_CODE_033          Int // Median code
-  DEGREES_SKEW_034         Int // Degrees of skew
-  STRUCTURE_FLARED_035     Int // Structure flared
-  RAILINGS_036A            Int // Railings
-  TRANSITIONS_036B         Int // Transitions
-  APPR_RAIL_036C           Int // Approach rail
-  APPR_RAIL_END_036D       Int // Approach rail end
-  HISTORY_037              Int // History
-  NAVIGATION_038           Int // Navigation
-  NAV_VERT_CLR_MT_039      Float // Navigation vertical clearance (meters)
-  NAV_HORR_CLR_MT_040      Float // Navigation horizontal clearance (meters)
-  OPEN_CLOSED_POSTED_041   String // Open/closed/posted status
-  SERVICE_ON_042A          Int // Service on
-  SERVICE_UND_042B         Int // Service under
-  STRUCTURE_KIND_043A      Int // Structure kind
-  STRUCTURE_TYPE_043B      Int // Structure type
-  APPR_KIND_044A           Int // Approach kind
-  APPR_TYPE_044B           Int // Approach type
-  MAIN_UNIT_SPANS_045      Int // Main unit spans
-  APPR_SPANS_046           Int // Approach spans
-  HORR_CLR_MT_047          Float // Horizontal clearance (meters)
-  MAX_SPAN_LEN_MT_048      Float // Maximum span length (meters)
-  STRUCTURE_LEN_MT_049     Float // Structure length (meters)
-  LEFT_CURB_MT_050A        Float // Left curb width (meters)
-  RIGHT_CURB_MT_050B       Float // Right curb width (meters)
-  ROADWAY_WIDTH_MT_051     Float // Roadway width (meters)
-  DECK_WIDTH_MT_052        Float // Deck width (meters)
-  VERT_CLR_OVER_MT_053     Float // Vertical clearance over (meters)
-  VERT_CLR_UND_REF_054A    String? // Vertical clearance under reference (nullable)
-  VERT_CLR_UND_054B        Float? // Vertical clearance under (nullable)
-  LAT_UND_REF_055A         String? // Latitude under reference (nullable)
-  LAT_UND_MT_055B          Float? // Latitude under (nullable)
-  LEFT_LAT_UND_MT_056      Float? // Left latitude under (nullable)
-  DECK_COND_058            Int // Deck condition
-  SUPERSTRUCTURE_COND_059  Int // Superstructure condition
-  SUBSTRUCTURE_COND_060    Int // Substructure condition
-  CHANNEL_COND_061         Int // Channel condition
-  CULVERT_COND_062         Int // Culvert condition
-  OPR_RATING_METH_063      Int // Operating rating method
-  OPERATING_RATING_064     Float // Operating rating
-  INV_RATING_METH_065      Int // Inventory rating method
-  INVENTORY_RATING_066     Float // Inventory rating
-  STRUCTURAL_EVAL_067      Int // Structural evaluation
-  DECK_GEOMETRY_EVAL_068   Int // Deck geometry evaluation
-  UNDCLRENCE_EVAL_069      Int // Underclearance evaluation
-  POSTING_EVAL_070         Int // Posting evaluation
-  WATERWAY_EVAL_071        Int // Waterway evaluation
-  APPR_ROAD_EVAL_072       Int // Approach road evaluation
-  WORK_PROPOSED_075A       Int? // Work proposed (nullable)
-  WORK_DONE_BY_075B        Int? // Work done by (nullable)
-  IMP_LEN_MT_076           Float? // Improvement length (nullable)
-  DATE_OF_INSPECT_090      DateTime // Date of inspection
-  INSPECT_FREQ_MONTHS_091  Int? // Inspection frequency (months, nullable)
-  FRACTURE_092A            String? // Fracture (nullable)
-  UNDERWATER_LOOK_SEE_092B String? // Underwater look/see (nullable)
-  SPEC_INSPECT_092C        String? // Special inspection (nullable)
-  BRIDGE_IMP_COST_094      Float? // Bridge improvement cost (nullable)
-  ROADWAY_IMP_COST_095     Float? // Roadway improvement cost (nullable)
-  TOTAL_IMP_COST_096       Float? // Total improvement cost (nullable)
-  YEAR_OF_IMP_097          Int? // Year of improvement (nullable)
-  OTHER_STATE_CODE_098A    String? // Other state code (nullable)
-  OTHER_STATE_PCNT_098B    Float? // Other state percent (nullable)
-  OTHR_STATE_STRUC_NO_099  String? // Other state structure number (nullable)
-  STRAHNET_HIGHWAY_100     String // STRAHNET highway
-  PARALLEL_STRUCTURE_101   Int // Parallel structure
-  TRAFFIC_DIRECTION_102    Int // Traffic direction
-  TEMP_STRUCTURE_103       Int // Temporary structure
-  HIGHWAY_SYSTEM_104       Int // Highway system
-  FEDERAL_LANDS_105        Int // Federal lands
-  YEAR_RECONSTRUCTED_106   Int? // Year reconstructed (nullable)
-  DECK_STRUCTURE_TYPE_107  Int? // Deck structure type (nullable)
-  SURFACE_TYPE_108A        Int? // Surface type (nullable)
-  MEMBRANE_TYPE_108B       Int? // Membrane type (nullable)
-  DECK_PROTECTION_108C     Int? // Deck protection (nullable)
-  PERCENT_ADT_TRUCK_109    Float? // Percent ADT trucks (nullable)
-  NATIONAL_NETWORK_110     String // National network
-  PIER_PROTECTION_111      Int // Pier protection
-  BRIDGE_LEN_IND_112       Int // Bridge length indicator
-  SCOUR_CRITICAL_113       Int // Scour critical
-  FUTURE_ADT_114           Int? // Future ADT (nullable)
-  YEAR_OF_FUTURE_ADT_115   Int? // Year of future ADT (nullable)
-  MIN_NAV_CLR_MT_116       Float? // Minimum navigation clearance (nullable)
-  FED_AGENCY               String? // Federal agency (nullable)
-  SUBMITTED_BY             String // Submitted by
-  BRIDGE_CONDITION         String // Bridge condition
-  LOWEST_RATING            Int // Lowest rating
-  DECK_AREA                Float // Deck area
+  id                      Int     @id @default(autoincrement()) // Unique identifier for each row
+  STATE_CODE_001          String?
+  STRUCTURE_NUMBER_008    String?
+  RECORD_TYPE_005A        String?
+  ROUTE_PREFIX_005B       String?
+  SERVICE_LEVEL_005C      String?
+  ROUTE_NUMBER_005D       String?
+  DIRECTION_005E          String?
+  HIGHWAY_DISTRICT_002    String?
+  COUNTY_CODE_003         String?
+  PLACE_CODE_004          String?
+  FEATURES_DESC_006A      String?
+  CRITICAL_FACILITY_006B  String?
+  FACILITY_CARRIED_007    String?
+  LOCATION_009            String?
+  MIN_VERT_CLR_010        String?
+  KILOPOINT_011           String?
+  BASE_HWY_NETWORK_012    String?
+  LRS_INV_ROUTE_013A      String?
+  SUBROUTE_NO_013B        String?
+  LAT_016                 String?
+  LONG_017                String?
+  DETOUR_KILOS_019        String?
+  TOLL_020                String?
+  MAINTENANCE_021         String?
+  OWNER_022               String?
+  FUNCTIONAL_CLASS_026    String?
+  YEAR_BUILT_027          String?
+  TRAFFIC_LANES_ON_028A   String?
+  TRAFFIC_LANES_UND_028B  String?
+  ADT_029                 String?
+  YEAR_ADT_030            String?
+  DESIGN_LOAD_031         String?
+  APPR_WIDTH_MT_032       String?
+  MEDIAN_CODE_033         String?
+  DEGREES_SKEW_034        String?
+  STRUCTURE_FLARED_035    String?
+  RAILINGS_036A           String?
+  TRANSITIONS_036B        String?
+  APPR_RAIL_036C          String?
+  APPR_RAIL_END_036D      String?
+  HISTORY_037             String?
+  NAVIGATION_038          String?
+  NAV_VERT_CLR_MT_039     String?
+  NAV_HORR_CLR_MT_040     String?
+  OPEN_CLOSED_POSTED_041  String?
+  SERVICE_ON_042A         String?
+  SERVICE_UND_042B        String?
+  STRUCTURE_KIND_043A     String?
+  STRUCTURE_TYPE_043B     String?
+  APPR_KIND_044A          String?
+  APPR_TYPE_044B          String?
+  MAIN_UNIT_SPANS_045     String?
+  APPR_SPANS_046          String?
+  HORR_CLR_MT_047         String?
+  MAX_SPAN_LEN_MT_048     String?
+  STRUCTURE_LEN_MT_049    String?
+  LEFT_CURB_MT_050A       String?
+  RIGHT_CURB_MT_050B      String?
+  ROADWAY_WIDTH_MT_051    String?
+  DECK_WIDTH_MT_052       String?
+  VERT_CLR_OVER_MT_053    String?
+  VERT_CLR_UND_REF_054A   String?
+  VERT_CLR_UND_054B       String?
+  LAT_UND_REF_055A        String?
+  LAT_UND_MT_055B         String?
+  LEFT_LAT_UND_MT_056     String?
+  DECK_COND_058           String?
+  SUPERSTRUCTURE_COND_059 String?
+  SUBSTRUCTURE_COND_060   String?
+  CHANNEL_COND_061        String?
+  CULVERT_COND_062        String?
+  OPR_RATING_METH_063     String?
+  OPERATING_RATING_064    String?
+  INV_RATING_METH_065     String?
+  INVENTORY_RATING_066    String?
+  STRUCTURAL_EVAL_067     String?
+  DECK_GEOMETRY_EVAL_068  String?
+  UNDCLRENCE_EVAL_069     String?
+  POSTING_EVAL_070        String?
+  WATERWAY_EVAL_071       String?
+  APPR_ROAD_EVAL_072      String?
+  WORK_PROPOSED_075A      String?
+  WORK_DONE_BY_075B       String?
+  IMP_LEN_MT_076          String?
+  DATE_OF_INSPECT_090     String?
+  INSPECT_FREQ_MONTHS_091 String?
+  FRACTURE_092A           String?
+  UNDWATER_LOOK_SEE_092B  String?
+  SPEC_INSPECT_092C       String?
+  FRACTURE_LAST_DATE_093A String?
+  UNDWATER_LAST_DATE_093B String?
+  SPEC_LAST_DATE_093C     String?
+  BRIDGE_IMP_COST_094     String?
+  ROADWAY_IMP_COST_095    String?
+  TOTAL_IMP_COST_096      String?
+  YEAR_OF_IMP_097         String?
+  OTHER_STATE_CODE_098A   String?
+  OTHER_STATE_PCNT_098B   String?
+  OTHR_STATE_STRUC_NO_099 String?
+  STRAHNET_HIGHWAY_100    String?
+  PARALLEL_STRUCTURE_101  String?
+  TRAFFIC_DIRECTION_102   String?
+  TEMP_STRUCTURE_103      String?
+  HIGHWAY_SYSTEM_104      String?
+  FEDERAL_LANDS_105       String?
+  YEAR_RECONSTRUCTED_106  String?
+  DECK_STRUCTURE_TYPE_107 String?
+  SURFACE_TYPE_108A       String?
+  MEMBRANE_TYPE_108B      String?
+  DECK_PROTECTION_108C    String?
+  PERCENT_ADT_TRUCK_109   String?
+  NATIONAL_NETWORK_110    String?
+  PIER_PROTECTION_111     String?
+  BRIDGE_LEN_IND_112      String?
+  SCOUR_CRITICAL_113      String?
+  FUTURE_ADT_114          String?
+  YEAR_OF_FUTURE_ADT_115  String?
+  MIN_NAV_CLR_MT_116      String?
+  FED_AGENCY              String?
+  SUBMITTED_BY            String?
+  BRIDGE_CONDITION        String?
+  LOWEST_RATING           String?
+  DECK_AREA               String?
 }
