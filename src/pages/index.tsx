@@ -37,7 +37,9 @@ export default function Home() {
     <div
       className={`${geistSans.variable} flex flex-col min-h-screen w-full p-24 font-[family-name:var(--font-it)]`}
     >
-      <h1 className="text-2xl font-semibold">Welcome to the NBI Inventory</h1>
+      <h1 className="text-2xl font-semibold">
+        Welcome to the Natl. Bridge Inventory - Pennsylvania
+      </h1>
       <button
         className="text-center w-auto max-w-[6rem] mt-4 px-4 py-2 bg-blue-500 text-white rounded-md"
         onClick={() => {
