@@ -17,7 +17,7 @@ datasource db {
 model Bridge {
   id                      Int     @id @default(autoincrement()) // Unique identifier for each row
   STATE_CODE_001          String?
-  STRUCTURE_NUMBER_008    String?
+  STRUCTURE_NUMBER_008    String? @unique
   RECORD_TYPE_005A        String?
   ROUTE_PREFIX_005B       String?
   SERVICE_LEVEL_005C      String?
