@@ -11,7 +11,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    // @ts-ignore
+    /* eslint-disable  @typescript-eslint/no-explicit-any */
     const results: any = [];
 
     fs.createReadStream("public/mapped.csv")
@@ -19,7 +19,7 @@ export default async function handler(
       .on("data", (data) => results.push(data))
       .on("end", async () => {
         try {
-          // @ts-ignore
+          /* eslint-disable  @typescript-eslint/no-explicit-any */
           await prisma.bridge.createMany({
             // passing this typecasts to the Prisma.Bridge model, allowing us to not specify each fields type.
             // stricter typing can be enforced by doing more pre-processing, but in this case, we're just seeding the data
