@@ -140,3 +140,9 @@ model Bridge {
   LOWEST_RATING           String?
   DECK_AREA               String?
 }
+
+model Location {
+  id        Int   @id @default(autoincrement())
+  latitude  Float
+  longitude Float
+}
