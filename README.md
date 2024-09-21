@@ -1,40 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Overview - Natl Bridge Inventory
 
-## Getting Started
+Hello! Welcome to the Natl Bridge Inventory for Pennsylvania.
 
-First, run the development server:
+This repository contains the data and code used to create a way to query the Natl Bridge Inventory for Pennsylvanian Bridge Information.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+On the `main branch`, you will find a `NextJS` project that
+uses a `PostgreSQL` database and `Prisma ORM` to query the data I have loaded using two different endpoints, `api/seedData`, and `api/mapLocation`.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+On the `pyEnv branch`, you will find a Python script and a Jupyter Notebook file that uses Pandas & Regex libraries to better understand the shape of the data and to create a mock-schema file with. This schema.txt file was used as the foundation for DB model creation, and as a continous reference to the data types and values that were present are present.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Schema - PostgreSQL + Prisma ORM
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+The database contains two tables: one for all PA bridge data, and one for location data that is effectively used as a lookup table for general bridge data. The bridge table contains information about each bridge in Pennsylvania, and the location table contains information about each bridges' id, latitude, and longitude.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## API Endpoints
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+`api/seedData` creates a readable stream of csv data that is then parsed and loaded into an array of type any. I chose this pattern to use the base table as the main datastore, to create other associative tables from. I then use Prisma to load the data into the database, effectively typecasting the data into the correct types provided for the bridge schema, without explicitly creating a new object comprised of all 123 typedefs.
 
-## Learn More
+`api/mapLocation` queries the bridge table and returns the id and location data (latitude and longitude) for each bridge in the database.
+Then, an array of objects is created with that data to seed the location table with the relevant bridge's UID and typecast location values, effectively syncing the two tables together by UID. This table helps to perform numeric operations on location data.
 
-To learn more about Next.js, take a look at the following resources:
+`api/structure` works by querying the bridge table and returning all the data associated with a specific bridge. This is done by querying the bridge table by `STRUCTURE_NAME_008`, and returning the data associated with that 15-20 digit UUID.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+`api/location` works by querying the location table and returning all the data associated with a specific location, given a certain microdegrees of radius, which is 1.5 miles for this example. This is done by querying the location table by `Latitude x Longitude` (`LAT_016, and LONG_017`) where LAT and LONG are used to create a search radius of `SEARCH_RADIUS_MICRODEGREES`, then find what records are (`gte` and `lte`) within the microdegree values. After receiving structure data, I iterate over query result that contains the id of the structures to return information for, finally returning a list of structures that are within the search radius, and some key information about them, such as the structure name, year built, operational status, and the date of last inspection.
