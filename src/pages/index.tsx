@@ -32,31 +32,41 @@ export default function Home() {
   const [error, setError] = useState(false);
 
   const seedDB = async () => {
-    const response = await fetch(`http://localhost:3000/api/seedData`);
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}api/seedData`
+    );
     const resp = await response.json();
     console.log(resp.message);
   };
 
   const seedLocations = async () => {
-    const response = await fetch(`http://localhost:3000/api/mapLocation`);
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}api/mapLocation`
+    );
     const resp = await response.json();
     console.log(resp.message);
   };
 
   const searchStructures = async (sid: string) => {
-    const response = await fetch(`http://localhost:3000/api/structure`, {
-      method: "POST",
-      body: sid,
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}api/structure`,
+      {
+        method: "POST",
+        body: sid,
+      }
+    );
     const resp = await response.json();
     console.log(resp);
   };
 
   const searchLocation = async (lat: string, long: string) => {
-    const response = await fetch(`http://localhost:3000/api/location`, {
-      method: "POST",
-      body: JSON.stringify({ lat, long }),
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}api/location`,
+      {
+        method: "POST",
+        body: JSON.stringify({ lat, long }),
+      }
+    );
     const resp = await response.json();
 
     if (resp.status === 404 || resp.length === 0 || resp.error) {
